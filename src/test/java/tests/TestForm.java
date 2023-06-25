@@ -15,33 +15,30 @@ public class TestForm {
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "2560x1440";
+        Configuration.pageLoadTimeout = 60000;
     }
-
 
     @Test
     void successFillTest() throws InterruptedException {
         open("/automation-practice-form");
-        $(".main-header").shouldHave(text("Practice Form"));
 
-        $("#firstName").setValue("Mihail");
-        $("#lastName").setValue("Krylov");
-        $("#userEmail").setValue("Mihail@inbox.ru");
+        $x("//input[@id='firstName']").setValue("Mihail");
+        $x("//input[@id='lastName']").setValue("Krylov");
+        $x("//input[@id='userEmail']").setValue("Mihail@inbox.ru");
 
         executeJavaScript("arguments[0].click()", $(By.id("gender-radio-1")));
 
-        $("#userNumber").setValue("9053135955");
+        $x("//input[@id='userNumber']").setValue("9053135955");
         //$("#dateOfBirthInput").clear();
 
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOptionByValue("10");
-        $(".react-datepicker__year-select").selectOptionByValue("1995");
-        $(".react-datepicker__day--010").click();
+        $x("//input[@id='dateOfBirthInput']").click();
+        $x("//select[@class='react-datepicker__month-select']").selectOptionByValue("10");
+        $x("//select[@class='react-datepicker__year-select']").selectOptionByValue("1990");
+        $x("//div[@class='react-datepicker__month-container']//div[@aria-label='Choose Saturday, November 10th, 1990']").click();
 
-
-        $("#subjectsInput").setValue("Maths").pressEnter();
-        $("#subjectsInput").setValue("History").pressEnter();
-        $("#subjectsInput").setValue("Economics").pressEnter();
-
+        $x("//div[@id='subjectsContainer']//input").setValue("Maths").pressEnter();
+        $x("//div[@id='subjectsContainer']//input").setValue("History").pressEnter();
+        $x("//div[@id='subjectsContainer']//input").setValue("Economics").pressEnter();
 
         executeJavaScript("arguments[0].click()", $(By.id("hobbies-checkbox-1")));
         executeJavaScript("arguments[0].click()", $(By.id("hobbies-checkbox-2")));
@@ -60,7 +57,7 @@ public class TestForm {
                 textCaseSensitive("Student Email"),   textCaseSensitive("Mihail@inbox.ru"),
                 textCaseSensitive("Gender"),          textCaseSensitive("Male"),
                 textCaseSensitive("Mobile"),          textCaseSensitive("9053135955"),
-                textCaseSensitive("Date of Birth"),   textCaseSensitive("10 November,1995"),
+                textCaseSensitive("Date of Birth"),   textCaseSensitive("10 November,1990"),
                 textCaseSensitive("Subjects"),        textCaseSensitive("Maths, History, Economics"),
                 textCaseSensitive("Hobbies"),         textCaseSensitive("Sports, Reading, Music"),
                 textCaseSensitive("Picture"),         textCaseSensitive("picture.jpg"),
