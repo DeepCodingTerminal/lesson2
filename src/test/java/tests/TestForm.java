@@ -43,13 +43,13 @@ public class TestForm {
         executeJavaScript("arguments[0].click()", $(By.id("hobbies-checkbox-1")));
         executeJavaScript("arguments[0].click()", $(By.id("hobbies-checkbox-2")));
         executeJavaScript("arguments[0].click()", $(By.id("hobbies-checkbox-3")));
-        $("#uploadPicture").uploadFile(new File("src/test/resources/picture.jpg"));
+        $x("//input[@id='uploadPicture']").uploadFile(new File("src/test/resources/picture.jpg"));
 
-        $("#currentAddress").setValue("Moscow");
+        $x("//textarea[@placeholder='Current Address']").setValue("Moscow");
 
-        $("#react-select-3-input").setValue("NCR").pressEnter();
-        $("#react-select-4-input").setValue("Delhi").pressEnter();
-        $("#submit").click();
+        $x("//input[@id='react-select-3-input']").setValue("NCR").pressEnter();
+        $x("//input[@id='react-select-4-input']").setValue("Delhi").pressEnter();
+        $x("//button[@id='submit']").click();
 
         $("#example-modal-sizes-title-lg").shouldHave((textCaseSensitive("Thanks for submitting the form")));
         $(".table-responsive").shouldHave(
@@ -65,6 +65,6 @@ public class TestForm {
                 textCaseSensitive("State and City"),  textCaseSensitive("NCR Delhi")
         );
 
-        $("#closeLargeModal").click();
+        $x("//button[@id='closeLargeModal']").click();
     }
 }
