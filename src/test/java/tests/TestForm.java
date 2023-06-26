@@ -39,11 +39,10 @@ public class TestForm {
         $x("//div[@id='subjectsContainer']//input").setValue("Maths").pressEnter();
         $x("//div[@id='subjectsContainer']//input").setValue("History").pressEnter();
         $x("//div[@id='subjectsContainer']//input").setValue("Economics").pressEnter();
-
-        executeJavaScript("arguments[0].click()", $(By.id("hobbies-checkbox-1")));
-        executeJavaScript("arguments[0].click()", $(By.id("hobbies-checkbox-2")));
-        executeJavaScript("arguments[0].click()", $(By.id("hobbies-checkbox-3")));
         $x("//input[@id='uploadPicture']").uploadFile(new File("src/test/resources/picture.jpg"));
+        $x("//div[@id='hobbiesWrapper']//label[contains(text(), 'Sports')]").click();
+        $x("//div[@id='hobbiesWrapper']//label[contains(text(), 'Reading')]").click();
+        $x("//div[@id='hobbiesWrapper']//label[contains(text(), 'Music')]").click();
 
         $x("//textarea[@placeholder='Current Address']").setValue("Moscow");
 
@@ -51,8 +50,8 @@ public class TestForm {
         $x("//input[@id='react-select-4-input']").setValue("Delhi").pressEnter();
         $x("//button[@id='submit']").click();
 
-        $("#example-modal-sizes-title-lg").shouldHave((textCaseSensitive("Thanks for submitting the form")));
-        $(".table-responsive").shouldHave(
+        $x("//div[@id='example-modal-sizes-title-lg']").shouldHave((textCaseSensitive("Thanks for submitting the form")));
+        $x("//div[@class='table-responsive']").shouldHave(
                 textCaseSensitive("Student Name"),    textCaseSensitive("Mihail Krylov"),
                 textCaseSensitive("Student Email"),   textCaseSensitive("Mihail@inbox.ru"),
                 textCaseSensitive("Gender"),          textCaseSensitive("Male"),
