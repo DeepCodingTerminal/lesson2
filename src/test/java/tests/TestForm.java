@@ -15,6 +15,7 @@ public class TestForm {
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "2560x1440";
+        Configuration.holdBrowserOpen = false;
         Configuration.pageLoadTimeout = 60000;
     }
 
